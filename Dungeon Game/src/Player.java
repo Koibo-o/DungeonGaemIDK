@@ -25,8 +25,7 @@ public class Player{
     public void setH(double h){
         this.h = h;}
     // Getters and setters.
-    @Override
     public String toString(){
-        return "Name: " + n + "\nClass: " + clas + "\nHealth: " + h + "\nStrength: " + s + "\nAbility 1: " + a1 + "\nAbility 2: " + a2
+        return "Name: " + n + "\nClass: " + clas + "\nHealth: " + h + "\nStamina: " + s + "\nAbility 1: " + a1 + "\nAbility 2: " + a2
             + "\nSpecial 1: " + sa1 + "\nSpecial 2: " + sa2;}}
     // ToString.
