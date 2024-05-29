@@ -23,7 +23,7 @@ public class Maind{
         String entityType = getRandomString(entityTypes);
         Monster monster = null;
         // Entity Ability Selection
-        switch(entityType){
+        switch(entityType){//                class                    Strenght of monster             Health of monster                 Hostlity            name                 Abilities                   Monster ability damage
             case "Knight":monster = new Knight("Normal", getRandomDouble(80, 120), getRandomDouble(150, 250), getRandomBoolean(), "Knight", getRandomString(knightAbilities), getRandomDouble(30, 40));break;
             case "Archer":monster = new Archer("Light", getRandomDouble(40, 80), getRandomDouble(100, 200), getRandomBoolean(), "Archer", getRandomString(archerAbilities), getRandomDouble(20, 30), "Arrow");break;
             case "Dragon":monster = new Dragon("Heavy", getRandomDouble(120, 160), getRandomDouble(250, 350), getRandomBoolean(), "Dragon", getRandomString(dragonAbilities), getRandomDouble(40, 50), 1.0, getRandomString(dragonBreaths));break;
@@ -40,9 +40,10 @@ public class Maind{
         String cn = scanner.nextLine();
         Player player = null;
         switch(cs){
-            case "light":player = new Player(1000, 70, "Light", cn, "Shank", "Dodge", "Poison", "Invisibility");vcc = true;break;
-            case "normal":player = new Player(1000, 150, "Normal", cn, "Slash", "Stab", "Parry", "Boost");vcc = true;break;
-            case "heavy":player = new Player(1000, 350, "Heavy", cn, "Strike", "Slam", "Tank", "Challenge");vcc = true;break;}
+            case "light":player = new Player(100, 100, "Light", cn, "Shank", "Dodge", "Poison", "Invisibility");vcc = true;break;
+            case "normal":player = new Player(150, 200, "Normal", cn, "Slash", "Stab", "Parry", "Boost");vcc = true;break;
+            case "heavy":player = new Player(300, 350, "Heavy", cn, "Strike", "Slam", "Tank", "Challenge");vcc = true;break;}
+        // Player character type
         System.out.println(player + "\n");
         System.out.println("You will be fighting a " + monster.getName() + "\n");
         System.out.println(monster + "\n");
@@ -59,7 +60,7 @@ public class Maind{
         while(monster.getHealth() > 0 && player.getH() > 0){
             boolean vm = false;
             boolean em = true;
-            while(!vm){System.out.print("\nWhat is your move: ");if(vm = true)break;}
+            while(!vm){System.out.print("What is your move: ");if(vm = true)break;}
             String pm = scanner.nextLine();
             double damageDealt = 0;
             damageDealt = round(damageDealt, 2);
@@ -87,11 +88,13 @@ public class Maind{
                     System.out.println("\nParry sucsessful, " + monsterDamage + " has been dealt to your opponent.\n");}
                 else{monster.setHealth(round(player.getH() - (monsterDamage / 2), 2));reduceDamage = false;
                     System.out.println("\nTank sucsessful, " + monsterDamage + " has been dealt to you.\n");}}
+            // Any moves that reduce or remove damage to the player
             if(Boost){
                 BoostCount += 1;
                 player.setH(player.getH() + round(player.getH() * .10, 2));
                 System.out.println("\nYour health has been increased by 10%.\n\nYou are now at: " + player.getH() + " HP.\n");
                 if(BoostCount == 3){System.out.println("Your Boost has run out!");Boost = false; BoostCount = 0;}}
+            // Boost move
             if(challi){
                 em = false;
                 System.out.println("You stand to win everything, call it... ");
@@ -99,16 +102,12 @@ public class Maind{
                 String[] coinflip = {"heads", "tails"};
                 String cgf = getRandomString(coinflip);
                 if(ct.equals(cgf)){monster.setHealth(round(monster.getHealth() -  monster.getHealth() / 2, 2));}else{player.setH(round(player.getH() - player.getH() / 2, 2));System.out.println("You are now at " + player.getH() + " HP.");}}
+            // Challenge move
             if(em){
                 player.setH(round(player.getH()-monster.getAbilityDamage(), 2));
                 System.out.println("\nThe entity attacked and did " + monster.getAbilityDamage() + " Damage.\n\nYou are now at " + player.getH() + " HP.\n");}
-            
-            
-            
-            
-            
-            System.out.println("Your opponent is now at " + monster.getHealth() + " HP.\n");
-            }
+            System.out.println("Your opponent is now at " + monster.getHealth() + " HP.\n");}
+            // Entity Movement handler
         if(player.getH() > 0){System.out.println("\nYou won the fight!\n");} 
         else{System.out.println("\nYou lost the fight!\n");}}
     private double handleLightMoves(String pm, Monster monster, Player player, boolean vm){
