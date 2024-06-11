@@ -1,5 +1,5 @@
 public class Monster{
-    public double strength;
+    public double stamina;
     public double health;
     public boolean hostile;
     public String name;
@@ -7,9 +7,9 @@ public class Monster{
     public String mClass;
     public double ability_damage;
     // Variables.
-    public Monster(String mClass, double strength, double health, boolean hostile, String name, String ability, double ability_damage){
+    public Monster(String mClass, double stamina, double health, boolean hostile, String name, String ability, double ability_damage){
         this.mClass = mClass;
-        this.strength = strength;
+        this.stamina = stamina;
         this.health = health;
         this.hostile = hostile;
         this.name = name;
@@ -22,11 +22,15 @@ public class Monster{
         return name;}
     public void setHealth(double health){
         this.health = health;}
+    public void setStamina(double stamina){
+        this.stamina = stamina;}
     public double getAbilityDamage(){
         return ability_damage;}
+    public double getStamina(){
+        return stamina;}
     // Getters and setters
     @Override
     public String toString(){
-        return "Entity type: " + name + "\nClass: " + mClass + "\nStrength: " + strength + "\nHealth: " + health + "\n" +
+        return "Entity type: " + name + "\nClass: " + mClass + "\nStamina: " + stamina + "\nHealth: " + health + "\n" +
                 (hostile ? "It is Hostile" : "It is Not Hostile") + "\nAbility: " + ability;}}
-    // Tostring
+    // tostering

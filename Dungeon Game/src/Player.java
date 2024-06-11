@@ -22,8 +22,12 @@ public class Player{
         return clas;}
     public double getH(){
         return h;}
+    public double getS(){
+        return s;}
     public void setH(double h){
         this.h = h;}
+    public void setS(double s){
+        this.s = s;}
     // Getters and setters.
     public String toString(){
         return "Name: " + n + "\nClass: " + clas + "\nHealth: " + h + "\nStamina: " + s + "\nAbility 1: " + a1 + "\nAbility 2: " + a2
